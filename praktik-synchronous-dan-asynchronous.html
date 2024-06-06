@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syncronous vs Asynchronous</title>
+</head>
+<body>
+    <h1>Syncronous vs Asynchronous Javascript</h1>
+    <button onclick="SynchronousOperation()">Synchronous Operation</button>
+    <button onclick="AsynchronousOperation()">Asynchronous Operation</button>
+    <button onclick="showAlert()">Show Alert</button>
+
+    <p id="syncOut"></p>
+    <p id="asyncOut"></p>
+
+    <script>
+        function showAlert(){
+            alert("berhasil!!");
+        }
+
+        function SynchronousOperation(){
+            document.getElementById('syncOut').innerText = "Syncronous operation started. . .";
+
+            const start = Date.now();
+            while (Date.now()- start < 2000){
+
+            }
+            document.getElementById('syncOut').innerText = "Syncronous operation completed!!!";
+        }
+
+        function AsynchronousOperation(){
+            document.getElementById('asyncOut').innerText = "Asyncronous operation started. . .";
+
+            setTimeout(()=>{
+                document.getElementById('asyncOut').innerText = "Asyncronous operation completed!!!";
+            }, 2000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Data Using Promise</title>
+</head>
+<body>
+    <h1>Data fetch exaple</h1>
+    <button id="fetchButton">Fetch Data</button>
+    <button id="fetcherrorButton">Simulate Error</button>
+    <p id="dataDisplay">no data fetched yet</p>
+
+    <script>
+        function fetchData(){
+            return new Promise(resolve => {
+                setTimeout(() => {
+                    resolve("data fetched");
+                }, 1000);
+            })
+        }
+
+        function throwError(){
+            return new Promise((resolve, reject ) =>{
+                throw new Error ("Whoopsy doopsy!!")
+            })
+        }
+
+        document.getElementById('fetchButton').addEventListener('click',()=>{
+            fetchData().then((result)=>{
+                document.getElementById('dataDisplay').textContent = result;
+            });
+        });
+
+        document.getElementById('fetcherrorButton').addEventListener('click',()=>{
+            throwError().then((result)=>{
+                console.log(result)
+            }).catch((error)=> {
+                document.getElementById('dataDisplay').textContent = error;
+            });
+        });
+    </script>
+</body>
+</html>

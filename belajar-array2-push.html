@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display array</title>
+</head>
+<body>
+    <h1>Display array using for i++</h1>
+    <div id="arrayOutput"></div>
+    <h1>Display array using for forEach</h1>
+    <div id="arrayOutput2"></div>
+    <h1>Display array using map</h1>
+    <div id="arrayOutput3"></div>
+</body>
+<script>
+    const buah = ['Apple', 'Banana', 'Cherrybell'];
+    const sayur = ['Selada', 'Saledri', 'Kangkung'];
+    buah.push ('Duku');
+    buah.pop();
+    buah.shift();
+    buah.unshift('Durian');
+
+    const fruitVegie = buah.concat(sayur);
+
+    const outputDiv = document.getElementById('arrayOutput');
+
+    let content = '<ul>';
+    for (let item of fruitVegie) {
+        content += `<li> ${item}</li>`;
+    }
+    content += '</ul>';
+    outputDiv.innerHTML = content;
+
+    const outputDiv2 = document.getElementById('arrayOutput2');
+    const fruitVegieWithoutbanana = fruitVegie.filter((item)=>item !== 'Banana');
+    
+    let content2 = '<ul>';
+    fruitVegieWithoutbanana.forEach((item)=>{
+        content2 += `<li>${item}</li>`
+    })
+    content2 += '</ul>';
+    outputDiv2.innerHTML = content2;
+    
+    const fruitVegieWithplastic = fruitVegie.map((item)=>{
+        return `bungkus - ${item}`;
+    });
+    const outputDiv3 = document.getElementById('arrayOutput3');
+
+    let content3 = '<ul>';
+        fruitVegieWithplastic.forEach((item)=>{
+        content3 += `<li>${item}</li>`;
+    });
+    content3 += '</ul>'
+
+    outputDiv3.innerHTML = content3;
+</script>
+</html>

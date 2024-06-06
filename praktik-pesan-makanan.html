@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pemesanan Makanan</title>
+</head>
+<body>
+    <h1 style="color: rgb(30, 255, 0);">Pemesanan Makanan</h1>
+    <h3>waktu tunggu proses makanan</h3> 
+    <ul>
+        <li>Burger: 3 detik</li>
+        <li>ayam goreng: 10 detik</li>
+        <li>pizza: 15 detik</li>
+    </ul>
+    <button onclick="pesanMakanan()">Pesan Makanan</button>
+    <div id="result"></div>
+
+    <script>
+        async function pesanMakanan() {
+            const makanan = prompt("Masukkan pesanan Anda (burger/ayam goreng/pizza):").toLocaleLowerCase();
+            let waktuTunggu;
+
+            switch (makanan) {
+                case 'burger':
+                    waktuTunggu = 3000; 
+                    console.log('burger sedang diproses dalam waktu 3 detik');
+                    break;
+                case 'ayam goreng':
+                    waktuTunggu = 10000; 
+                    console.log('ayam goreng sedang diproses dalam waktu 10 detik');
+                    break;
+                case 'pizza':
+                    waktuTunggu = 15000; 
+                    console.log('pizza sedang diproses dalam waktu 15 detik');
+                    break;
+                default:
+                    document.getElementById("result").innerText = "Pesanan tidak valid, silahkan pilih makanan yang disediakan.";
+                    return;
+            }
+
+            document.getElementById("result").innerText = `${makanan} sedang diproses...`;
+
+            await new Promise(resolve => setTimeout(resolve, waktuTunggu));
+
+            document.getElementById("result").innerText = `${makanan} sudah siap! silahkan ambil pesanan anda`;
+            console.log(`${makanan} selesai`);
+        }
+    </script>
+</body>
+</html>

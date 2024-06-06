@@ -1,0 +1,678 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Case Study: Revamp m-BCA 2.0</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="26fcd520-253a-4562-9c45-c38e0ad8433d" class="page sans"><header><img class="page-cover-image" src="Case%20Study%20Revamp%20m-BCA%202%200%2026fcd520253a45629c45c38e0ad8433d/LinkedIn_cover_-_1_(4).png" style="object-position:center 50%"/><h1 class="page-title">Case Study: Revamp m-BCA 2.0</h1><p class="page-description"></p></header><div class="page-body"><blockquote id="098580be-6772-42af-b5c7-0728f3c6fdfc" class="">Portfolio by Eka Bayu Perwita - UI/UX Research &amp; Designer</blockquote><p id="d420d4c6-c677-4d07-b612-96628d3d7fd5" class="">
+</p><p id="eaa72e66-9700-4937-af67-d301f0bf77db" class="">Sebelumnya, saya mengucapkan terima kasih banyak kepada semua tim yang telah membantu demi kelancarannya revamp aplikasi m-BCA ini, khususnya untuk:</p><ul id="0a994501-a1a2-47b1-a78e-d6bcc3db53d9" class="bulleted-list"><li style="list-style-type:disc">Tim Product Manager<ol type="1" id="08ecf471-27e0-4123-a8ed-f0aa90882414" class="numbered-list" start="1"><li>Hang Nadi</li></ol><ol type="1" id="40ab45d6-ccc0-4b64-991a-a86fc5391045" class="numbered-list" start="2"><li>Muhammad Fauzi</li></ol></li></ul><ul id="b569c5f2-5da5-46da-a7a9-1f524022957e" class="bulleted-list"><li style="list-style-type:disc">Tim UI/UX Research &amp; Design<ol type="1" id="3c2780b6-6c5b-49af-b7dd-8381e6c4afa4" class="numbered-list" start="1"><li>Mochammad Dandi</li></ol><ol type="1" id="b3ba7b2d-299a-49b6-a680-20daf17cb338" class="numbered-list" start="2"><li>Mei Ducia</li></ol><ol type="1" id="adfe44d4-814d-4d8f-b655-a8cee14433c5" class="numbered-list" start="3"><li>Shabika Salsabila</li></ol></li></ul><h2 id="0348535e-04f3-4851-8f69-d7da0eda3403" class="">My Role</h2><ol type="1" id="6987e890-4f9f-40df-ae25-16bf677d7da7" class="numbered-list" start="1"><li>UI Designer</li></ol><ol type="1" id="1b18310e-c539-45fc-af06-e933fcb36e4c" class="numbered-list" start="2"><li>Half UX research</li></ol><h2 id="59f454a4-b0b5-4519-b97c-48a5780dc043" class="">Problem</h2><blockquote id="c6d8f932-7daa-4bed-ba71-e96edca7c8f9" class=""><strong>Di era zaman yang serba mudah, Pengguna aplikasi mobile banking yang membutuhkan kemudahan ketika bertransaksi dengan user journey yang mudah (tidak perlu memasukkan password atau kode akses berkali-kali) dan tidak bertele-tele. </strong></blockquote><figure id="6c633180-808c-4904-aab3-0cf66683c211" class="image"><a href="Case%20Study%20Revamp%20m-BCA%202%200%2026fcd520253a45629c45c38e0ad8433d/kelemahan_m-bca.png"><img style="width:432px" src="Case%20Study%20Revamp%20m-BCA%202%200%2026fcd520253a45629c45c38e0ad8433d/kelemahan_m-bca.png"/></a></figure><p id="185af039-be9c-4a96-be00-216ee9b8e852" class="">Dari informasi yang saya temukan dari website BCA <a href="https://www.bca.co.id/id/tentang-bca">https://www.bca.co.id/id/tentang-bca</a>. BCA merupakan salah satu bank terbesar di Indonesia yang memiliki total aset sebesar 1.259 Triliun dengan jumlah nasabah &gt;29 Juta. Tentunya pengguna mobile banking BCA pun kurang lebih sebanyak jumlah nasabah yang disebutkan. Ketika tim melakukan riset menggunakan aplikasi app store, banyak user mengeluh mengenai interface dan experience mereka selama mereka menggunakan m-BCA. Bahkan, rating m-BCA sendiri di app store hanya mendapatkan nilai 3.4 dari skala 5. maka dari itu, kami memutuskan untuk melakukan revamp dari aplikasi m-BCA untuk menjawab keluhan dari user.  </p><blockquote id="c62c9de7-28f5-4c71-81e7-fa5e01692e81" class="">Berangkat dari masalah yang ditemukan melalui app store, kami menawarkan solusi untuk menyelesaikan masalah user:</blockquote><ol type="1" id="b046dcd4-0241-4ab3-8216-dd67bcef11b6" class="numbered-list" start="1"><li>Kemudahan login untuk aplikasi dengan fitur cangih seperti finger print dan face detection.</li></ol><ol type="1" id="645ba7b2-4125-4b0e-afdf-75efe706cc49" class="numbered-list" start="2"><li>transaksi di aplikasi yang seamless tanpa memasukan password berulang kali.</li></ol><ol type="1" id="b836cdbe-0d4a-438f-bbdb-8d241eb0266f" class="numbered-list" start="3"><li>kemudahan dalam mengirimkan bukti transfer (tidak perlu screenshoot).</li></ol><h2 id="a5430c90-22e4-4dda-b8d8-d8053d51e038" class="">Scrum Taskboard</h2><figure id="376745de-369b-4b36-9787-53011b99c1f7" class="image"><a href="Case%20Study%20Revamp%20m-BCA%202%200%2026fcd520253a45629c45c38e0ad8433d/scrum_task_board.png"><img style="width:861px" src="Case%20Study%20Revamp%20m-BCA%202%200%2026fcd520253a45629c45c38e0ad8433d/scrum_task_board.png"/></a></figure><p id="68186a77-ccac-4fbf-ad1b-dae08b1ca4f7" class=""><a href="https://trello.com/invite/b/xnnW8rmZ/a49e0507a8b789f7a985f47ef9c31990/revamp-m-bca">https://trello.com/invite/b/xnnW8rmZ/a49e0507a8b789f7a985f47ef9c31990/revamp-m-bca</a></p><h2 id="68d2e4c9-04a1-4ddf-9485-8a76640cd235" class="">Process &amp; Timeline</h2><figure id="ad4f2f60-a235-4a8a-99a6-35bc3a0a3e0e" class="image"><a href="Case%20Study%20Revamp%20m-BCA%202%200%2026fcd520253a45629c45c38e0ad8433d/Untitled_(2).png"><img style="width:768px" src="Case%20Study%20Revamp%20m-BCA%202%200%2026fcd520253a45629c45c38e0ad8433d/Untitled_(2).png"/></a></figure><h2 id="5435ee46-d9f5-4886-ad0e-0db8058ba86c" class="">Stage 1: Empathy</h2><p id="19cda2ca-01d3-46c6-8ca4-fea4883225c8" class="">Selama tahap ini, kami mencoba berempati secara mendalam dengan orang-orang yang memiliki keluhan mengenai aplikasi ini, sehingga kami dapat memahami kebutuhan, pikiran, emosi, dan motivasi mereka.</p><h3 id="6ee42723-56a6-4605-9ed3-d7a5eef4b52d" class="">Pain point:</h3><ol type="1" id="73de2ad8-b817-4e32-8b57-44af8eb2fd8c" class="numbered-list" start="1"><li>Ribet banget mau cek saldo aja masukkan pin.</li></ol><ol type="1" id="b906c993-b876-4d5c-8e63-469e4fc9325d" class="numbered-list" start="2"><li>Ribet harus melakukan screenshoot untuk mengirimkan bukti transaksi.</li></ol><ol type="1" id="430d7c27-247f-4614-9204-e90e878a47e5" class="numbered-list" start="3"><li>UI terlihat ketinggalan zaman.</li></ol><ol type="1" id="06ec9304-fcaf-4737-97b7-28d4211216fe" class="numbered-list" start="4"><li>Susah banget masuk aplikasi mesti masukkan pin.</li></ol><ol type="1" id="961e7c42-91f5-4a75-9769-b66de62c1129" class="numbered-list" start="5"><li>Segala sesuatunya selalu harus pakai pin.</li></ol><ol type="1" id="351368c7-49b9-43cb-b344-0fc3b2c07ac3" class="numbered-list" start="6"><li>Untuk transfer uang, apabila belum punya nomor rekening harus melakukan register di menu berbeda.</li></ol><h3 id="552c8e77-6eba-4e0d-be06-bdec3509f733" class="">How Might We:</h3><ol type="1" id="0b5ff89d-424e-4a7b-9ca9-1f2218321149" class="numbered-list" start="1"><li>Bagaimana membuat aplikasi yang seamless, hassle free ketika mengakses keseluruhan aplikasi tersebut?</li></ol><ol type="1" id="acf0d751-5337-40e0-a3b8-5ee03528f322" class="numbered-list" start="2"><li>Bagaimana mempermudah melakukan login dengan menambah fitur terkini pada aplikasi tetapi tidak mengurangi keamanan aplikasi?</li></ol><ol type="1" id="76c5cf0e-edc9-4e5e-a28e-b3cba3441556" class="numbered-list" start="3"><li>Bagaimana cara mempermudah mendapatkan bukti transfer tanpa harus melalui screenshoot dari perangkat?</li></ol><ol type="1" id="48217917-9b5f-45ef-b2c9-d859ab1ff44f" class="numbered-list" start="4"><li>Bagaimana melakukan transaksi tanpa memasukkan password di setiap langkah transaksi?</li></ol><ol type="1" id="5832dfd4-8f31-48f3-a0e0-7963a09f7e42" class="numbered-list" start="5"><li>Bagaimana membuat desain UI aplikasi yang menarik dan tidak kalah dengan competitor?</li></ol><ol type="1" id="e025065c-794c-4383-937f-501cebe6063c" class="numbered-list" start="6"><li>Bagaimana user langsung mendapatkan informasi penting ketika membuka aplikasi tanpa harus melalui serangkaian langkah untuk mendapatkan 1 informasi penting?</li></ol><ol type="1" id="194c9458-2276-47b2-a176-300e54595526" class="numbered-list" start="7"><li>bagaimana cara user mengetahui ketika user gagal melakukan login menggunakan fitur biometrik?</li></ol><ol type="1" id="ff3b8030-7ff7-4c02-9ba0-1925fc40571b" class="numbered-list" start="8"><li>bagaimana cara user mengetahui ketika user gagal melakukan autentikasi biometrik pada fitur biometrik transaksi?</li></ol><ol type="1" id="fff352aa-876e-4fdc-8a64-825e1c2fcd8a" class="numbered-list" start="9"><li>bagaimana cara user dapat mengatur sendiri menu dari home supaya lebih mudah untuk melakukan tahapan transaksi sesuai kebutuhan?</li></ol><ol type="1" id="9ba43d0b-89cc-4e7d-aafd-c91cace55272" class="numbered-list" start="10"><li>bagaimana cara user dapat melihat menu secara keseluruhan untuk meningkatkan eksplorasi aplikasi m-BCA?</li></ol><h3 id="6f0abba4-0389-4d1e-b72f-bb0c381e1544" class="">Research goals:</h3><ol type="1" id="d2de7b02-a50a-4a9b-8fe3-1bad845620eb" class="numbered-list" start="1"><li>Mendapatkan kemudahan dalam melakukan login Aplikasi.</li></ol><ol type="1" id="5febc9d5-c5cb-4e42-aa93-a3f233f36d16" class="numbered-list" start="2"><li>Mendapatkan fitur share bukti transfer.</li></ol><ol type="1" id="c9ddc65d-cb96-4867-a052-82bac8a49561" class="numbered-list" start="3"><li>UI lebih interaktif.</li></ol><ol type="1" id="7bf1a504-e8a6-49a7-853f-3a82d6ff7940" class="numbered-list" start="4"><li>Kemudahan dengan fitur finger print maupun face ID.</li></ol><h3 id="68a5e344-cbdc-4f4f-90a1-7a02dbc549b2" class="">Competitive analysis</h3><figure id="9c4e3e40-d9f6-459e-986a-76ed437db20a" class="image"><a href="Case%20Study%20Revamp%20m-BCA%202%200%2026fcd520253a45629c45c38e0ad8433d/image_8.png"><img style="width:768px" src="Case%20Study%20Revamp%20m-BCA%202%200%2026fcd520253a45629c45c38e0ad8433d/image_8.png"/></a></figure><h2 id="1fa7bca8-c117-4375-961d-b3b07ffa7d4b" class="">Stage 2: Define</h2><h3 id="a745d10a-7116-4b37-bac5-452f788e39dd" class="">Define problem</h3><ol type="1" id="46678ab0-b37a-4a74-9ad3-88263926ab40" class="numbered-list" start="1"><li>Butuh fitur Face ID &amp; finger print.</li></ol><ol type="1" id="34a85984-2c45-4971-bfc0-84fa61c90ea9" class="numbered-list" start="2"><li>Membutuhkan fitur penyimpanan bukti transfer.</li></ol><ol type="1" id="4ff00985-ec32-49e8-ac5e-02e055926cca" class="numbered-list" start="3"><li>Membutuhkan check balance tanpa memasukkan PIN.</li></ol><ol type="1" id="7677a4ed-c96c-4a12-af7e-7d3abdf94008" class="numbered-list" start="4"><li>Membutuhkan fitur membagikan bukti transfer.</li></ol><h3 id="04a7b797-3d3c-4ea7-9f0c-e5c9a2cf095c" class="">Define solution</h3><ol type="1" id="f897139b-e5fb-4f40-9ea9-ecdf9ebd20d2" class="numbered-list" start="1"><li>Fitur Face ID &amp; finger print untuk mendapatkan kemudahan dalam melakukan login Aplikasi.</li></ol><ol type="1" id="3808c619-38e6-48d6-a94f-3e17adf55e59" class="numbered-list" start="2"><li>Mendapatkan fitur penyimpanan bukti transfer.</li></ol><ol type="1" id="27dd67ee-374c-42cd-8caf-74171af2c088" class="numbered-list" start="3"><li>Menampilkan jumlah saldo di home page.</li></ol><ol type="1" id="cd897f0b-d84a-4a51-b24c-3349d7b305af" class="numbered-list" start="4"><li>Mendapatkan fitur membagikan bukti transfer.</li></ol><h2 id="f1ac68c7-23bd-4d12-aaf1-816faefd8796" class="">Stage 3: Ideate</h2><h3 id="6ab46445-1079-4b3c-87ca-8a391c25caa1" class="">Crazy 8</h3><figure id="f4feddea-82e0-44ac-8717-11b3cf6d24eb" class="image"><a href="Case%20Study%20Revamp%20m-BCA%202%200%2026fcd520253a45629c45c38e0ad8433d/crazy_8.png"><img style="width:932px" src="Case%20Study%20Revamp%20m-BCA%202%200%2026fcd520253a45629c45c38e0ad8433d/crazy_8.png"/></a></figure><h3 id="7c40f386-54b0-4d75-8e2b-58ccf507411d" class="">Sitemap</h3><figure id="2e428586-afec-4866-a399-7fc15226d28d" class="image"><a href="Case%20Study%20Revamp%20m-BCA%202%200%2026fcd520253a45629c45c38e0ad8433d/Untitled.png"><img style="width:768px" src="Case%20Study%20Revamp%20m-BCA%202%200%2026fcd520253a45629c45c38e0ad8433d/Untitled.png"/></a></figure><h3 id="8f78ce39-de25-43a8-851e-b4205f5d000d" class="">User Flow</h3><figure id="95328202-338c-4432-86a2-2e65ac6e862f"><div class="source">https://www.figma.com/file/QMrB1sL9drsMuMYSfTxLCb/Revamp-BCA-2.0?node-id=55%3A757</div></figure><h3 id="88d0cab2-4d07-46ae-8ff0-1583ea2f3327" class="">Low-Fi</h3><figure id="b84a654f-988a-45ea-80fb-a0c597410be5" class="image"><a href="Case%20Study%20Revamp%20m-BCA%202%200%2026fcd520253a45629c45c38e0ad8433d/Group_366.png"><img style="width:4085px" src="Case%20Study%20Revamp%20m-BCA%202%200%2026fcd520253a45629c45c38e0ad8433d/Group_366.png"/></a></figure><h3 id="b9f1e83c-fa93-4540-a097-db673bdfa3ca" class="">Hi-Fi</h3><figure id="0ff34ec9-d0a7-4a7e-8572-028f3543f135" class="image"><a href="Case%20Study%20Revamp%20m-BCA%202%200%2026fcd520253a45629c45c38e0ad8433d/Group_366_(1).png"><img style="width:5037px" src="Case%20Study%20Revamp%20m-BCA%202%200%2026fcd520253a45629c45c38e0ad8433d/Group_366_(1).png"/></a></figure><h2 id="bd7cad7a-1ed4-4e77-b265-f384c84320c7" class="">Stage 4: Prototype</h2><h3 id="73c7cc67-4ea3-49f8-bfa4-5eb376fcba91" class="">Prototype </h3><figure id="4d33e995-b8f5-4fda-bf76-90b00506f40b"><div class="source">https://www.figma.com/proto/QMrB1sL9drsMuMYSfTxLCb/Revamp-BCA-2.0?node-id=1%3A294&amp;scaling=scale-down&amp;page-id=0%3A1&amp;starting-point-node-id=1%3A5797&amp;show-proto-sidebar=1</div></figure><h2 id="1e5fecad-b016-4dc6-8568-29405d883273" class="">Stage 5 : Test</h2><h3 id="676df81a-c2eb-4753-aba4-68dbcba8b20d" class="">Usability Test</h3><figure id="429b09c4-efa4-4a07-8857-2a63a0d65767" class="image"><a href="Case%20Study%20Revamp%20m-BCA%202%200%2026fcd520253a45629c45c38e0ad8433d/UT_m-BCA.png"><img style="width:664px" src="Case%20Study%20Revamp%20m-BCA%202%200%2026fcd520253a45629c45c38e0ad8433d/UT_m-BCA.png"/></a></figure><h3 id="1df8e9bc-6d2d-4bc3-9a3f-c6a3197b8ef0" class="">User Report</h3><blockquote id="d874121b-ab25-4689-90d3-245558acff0e" class=""><strong>Anita</strong></blockquote><ul id="0be90e80-bb70-467f-a110-d917a597ad69" class="bulleted-list"><li style="list-style-type:disc">Effectiveness → 10/10 tasks completed 100% or score 100</li></ul><ul id="a6c3061a-812d-42e3-b7c5-1a334a135209" class="bulleted-list"><li style="list-style-type:disc">Efficiency → Average time: 25.41 seconds.</li></ul><blockquote id="266a3dbf-4a9d-4c57-9026-a6f7c7a9d63e" class=""><strong>Amel</strong></blockquote><ul id="ace9e3e8-e239-43ae-abe7-49ad2c2ca69d" class="bulleted-list"><li style="list-style-type:disc">Effectiveness → 10/10 tasks completed 100% or score 100</li></ul><ul id="7c70c29b-e58e-489a-9906-f442608287e9" class="bulleted-list"><li style="list-style-type:disc">Efficiency → Average time: 28.48 seconds.</li></ul><blockquote id="031231dd-f439-4529-b254-60859e147573" class=""><strong>Ananda</strong></blockquote><ul id="2cb15278-db72-43a6-baa1-76618653b05a" class="bulleted-list"><li style="list-style-type:disc">Effectiveness → 10/10 tasks completed 100% or score 100</li></ul><ul id="a423219f-3e66-4d28-8c5d-e0760b90c609" class="bulleted-list"><li style="list-style-type:disc">Efficiency → Average time: 36.34 seconds.</li></ul><h3 id="a6feb22c-2f3d-43f7-8b4a-bd043c204f11" class="">Kritik &amp; Saran</h3><ol type="1" id="cc1c979e-c4b4-48f3-8e4b-bc5012201aee" class="numbered-list" start="1"><li>Anita : Tampilan aplikasi yang clear, fitur biometrik login &amp; transaksi mempermudah untuk login dan menyelesaikan transaksi tanpa takut lupa kode akses.</li></ol><ol type="1" id="93e9dbf3-61fd-405a-8e22-12ee07534314" class="numbered-list" start="2"><li>Amel : Pengalaman menggunakan aplikasi m-BCA dari dulu, dengan fitur dan tampilan yang menarik saat ini sangat mempermudah user.</li></ol><ol type="1" id="7c3bec86-e112-4b29-95f1-c5c1da424b46" class="numbered-list" start="3"><li>Ananda : Untuk fitur yang sekiranya akan sering digunakan lebih baik di put di homepage. Fitur sudah cukup lengkap.</li></ol><h2 id="42a133b4-5078-48e5-92dc-83c9000311cb" class="">Retrospektif</h2><ol type="1" id="0df9f093-bfbe-4290-9523-2afd6b6dd5f7" class="numbered-list" start="1"><li>Menu Virtual Account bisa dibuat lebih informatif.</li></ol><ol type="1" id="70eb3f70-a504-4306-9aba-5bd3f1c8d3e6" class="numbered-list" start="2"><li>Pada login page, diberikan opsi untuk memilih akan menggunakan login kode akses atau biometrik login.</li></ol><ol type="1" id="10ade014-bfd7-4727-aaab-73d27c58fff3" class="numbered-list" start="3"><li>Nantinya, mobile banking bisa membantu user penyandang disabilitas untuk melakukan transaksi. karena dalam rentang usia user mobile banking, mungkin ada user penyandang disabilitas.</li></ol><ol type="1" id="90827e66-823b-43ec-8576-a9a435e0aeb1" class="numbered-list" start="4"><li>Fitur Virtual Asistant dapat membantu orang-orang berusia lanjut dan penyandang disabilitas untuk memudahkan mereka menggunakan aplikasi hingga transaksi.</li></ol><h2 id="a9eee4e7-efbd-49fd-901f-41e35f5f0fe5" class="">Learning</h2><ol type="1" id="d18e6970-c17c-4f09-9790-0f89ab48b366" class="numbered-list" start="1"><li><strong>Jaga komunikasi antar tim (tim PM &amp; UI/UX), </strong>karena komunikasi penting terutama ketika akan melakukan research, define, dan prototyping. dengan saling menjaga komunikasi, kita bisa mengetahui sudah sampai mana proses pengerjaan kita. ketika ada salah satu orang yang tidak dapat menghandle sebuah task karena kesibukan lain, kita bisa bantu “back-up” task orang tersebut, sehingga pengerjaan tidak terlambat dari waktu yang ditentukan.</li></ol><ol type="1" id="5eb257ed-d468-492a-b983-8a6e29c47966" class="numbered-list" start="2"><li><strong>Tetapkan prioritas</strong>, ini menjadi bagian yang sangat rawan karena menetapkan prioritas adalah hal penting untuk membereskan suatu task atau pekerjaan, menetapkan prioritas berguna untuk mengetahui task apa yang akan dikerjakan terlebih dahulu, sehingga bisa memprediksi lama waktu dari sebuah task untuk dikerjakan.</li></ol><h2 id="6fb18d24-e8bd-4eed-903e-adc4963ede54" class="">Closing</h2><p id="56567642-be1f-4d84-95fc-9459a435911e" class="">Terima kasih yang sebesar-besarnya kepada Kak Adi sebagai fasilitator atau tutor yang sudah membagikan ilmunya yang sangat bermanfaat dan teman-teman yang saling membagikan pengalaman serta masukkan dari chapter-chapter sebelumnya, semoga silaturahmi yang sudah dibangun tetap bisa terjaga sampai lulus nanti.</p><p id="f21bbe4b-657c-4574-9acd-3c8d59f1f987" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

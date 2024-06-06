@@ -1,0 +1,695 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Case Study : Storia </title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="5342c8ee-d4d0-4b10-846f-6769f270a2ba" class="page sans"><header><img class="page-cover-image" src="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/LinkedIn_cover_-_3.png" style="object-position:center 50%"/><h1 class="page-title">Case Study : Storia </h1><p class="page-description"></p></header><div class="page-body"><figure id="f724e434-e725-44f6-b7b2-466575032415" class="image"><a href="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/file_cover_-_1.png"><img style="width:100%" src="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/file_cover_-_1.png"/></a></figure><h2 id="266ffc87-10fb-4e3e-8191-69103b3d95bf" class="">Paint Point</h2><p id="1c6911cb-4279-4a4b-9d32-82745622bbc6" class="">User is a 25 year old private employee who is very burdened with the work he is doing. The high cost of living forces him to work overtime for a meager wage, plus toxic bosses and coworkers make the user unable to set targets and find it difficult to do other things in life and are also prone to mental health issues.</p><h2 id="c99d1baa-a314-4c71-bf80-580a00157dcc" class="">Problem Statement</h2><p id="68e03fe1-67f3-4dd5-aa53-8a4282f046e4" class="">Users who have overtime jobs at Start-Ups and feel mentally burdened, and need a good work-life balance because they want to improve and improve their quality of life.</p><h2 id="e41c82aa-3fd4-4e67-980d-1724322719bf" class="">Solution Offered</h2><ul id="cc3a6686-8ea9-40c7-9738-ed35442a9e0a" class="bulleted-list"><li style="list-style-type:disc"><strong>Opportunity</strong><p id="7adff22b-e8fd-440a-b67f-47c02121173f" class="">An application feature that can help users conduct counseling with psychologists to overcome their mental health issues.</p></li></ul><ul id="52354dfd-89b5-4ce2-9ada-c5887d172d60" class="bulleted-list"><li style="list-style-type:disc"><strong>How Might We (HMW)</strong><ol type="1" id="7ed9a569-3d6b-40a2-9205-68501f0ce961" class="numbered-list" start="1"><li>How do users make an appointment with a psychologist?</li></ol><ol type="1" id="5711d650-3c55-4725-86e7-4b2782974832" class="numbered-list" start="2"><li>How does the application know the complaints felt by the user?</li></ol><ol type="1" id="7336e2c5-22f0-409a-9444-3530e5b3ed85" class="numbered-list" start="3"><li>How does the application facilitate the user while in therapy?</li></ol></li></ul><h2 id="1112111e-622c-455b-b4c1-60248b34ed12" class="">User Flow</h2><figure id="6427ab7a-dcf2-4f2b-a4d8-e713a46e1de2" class="image"><a href="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/Storia_Flowchart2x.png"><img style="width:720px" src="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/Storia_Flowchart2x.png"/></a><figcaption><a href="https://whimsical.com/storia-flowchart-Xq29238jVxqqvTCUWoXj4@2Ux7TurymM1ghtaxpaQd">https://whimsical.com/storia-flowchart-Xq29238jVxqqvTCUWoXj4@2Ux7TurymM1ghtaxpaQd</a></figcaption></figure><h2 id="f87e62cd-f4a5-4ac8-b498-72831d0a83b0" class="">Wireframe</h2><figure id="9aaa47fa-822d-4591-b366-bd3494f89863" class="image"><a href="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/image_1.png"><img style="width:720px" src="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/image_1.png"/></a><figcaption><a href="https://www.figma.com/file/uJzEcHvj1DbURbkOXyL5Ou/Challenge-5?node-id=0%3A1">https://www.figma.com/file/uJzEcHvj1DbURbkOXyL5Ou/Challenge-5?node-id=0%3A1</a></figcaption></figure><p id="de5ef96e-ab9c-44ca-ade5-e4d9cde2e691" class="">
+</p><h2 id="f21cb0db-a75d-4297-9645-79a30b457ebf" class="">Wireflow</h2><figure id="3128f29b-ad84-46dc-be82-933d687de8f6" class="image"><a href="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/Challenge_5_(4).png"><img style="width:768px" src="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/Challenge_5_(4).png"/></a><figcaption><a href="https://www.figma.com/file/uJzEcHvj1DbURbkOXyL5Ou/Challenge-5?node-id=0%3A1">https://www.figma.com/file/uJzEcHvj1DbURbkOXyL5Ou/Challenge-5?node-id=0%3A1</a></figcaption></figure><h2 id="a23b7384-2717-4db8-8210-900a3e76aa9e" class="">Mockup</h2><figure id="739a7e01-2017-4dce-b959-b596b7ba88b5" class="image"><a href="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/Challenge_5_(1)-min.png"><img style="width:13268px" src="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/Challenge_5_(1)-min.png"/></a><figcaption><a href="https://www.figma.com/file/uJzEcHvj1DbURbkOXyL5Ou/Challenge-5?node-id=0%3A1">https://www.figma.com/file/uJzEcHvj1DbURbkOXyL5Ou/Challenge-5?node-id=0%3A1</a></figcaption></figure><h2 id="6149ca4b-3ee8-46f0-bd33-29b2fe4b0e45" class="">Prototype</h2><p id="dc4a0046-76d8-42f6-83c3-747095ef7eb9" class="">Storia app update</p><p id="7846f0f0-ee1b-4e16-8600-45409133944f" class=""><a href="https://www.figma.com/proto/IlRBywGvA1qqQhAh2s3xMq/Storia?node-id=321%3A2791&amp;scaling=scale-down&amp;page-id=4%3A16&amp;starting-point-node-id=321%3A2791&amp;show-proto-sidebar=1">https://www.figma.com/proto/IlRBywGvA1qqQhAh2s3xMq/Storia?node-id=321%3A2791&amp;scaling=scale-down&amp;page-id=4%3A16&amp;starting-point-node-id=321%3A2791&amp;show-proto-sidebar=1</a></p><h2 id="7274789d-e4d0-408b-b808-6078139b1dc5" class="">Testing Plan</h2><ul id="30baaaca-f4f1-478b-a9d6-46d661398c3c" class="bulleted-list"><li style="list-style-type:disc"><strong>Participant</strong><p id="551b5bfb-79c2-42ae-8a6f-5877f7c4313d" class="">We select participants based on the user persona that we defined before, and we can write down the following criteria:</p><ol type="1" id="2a7db18a-4936-49e3-b464-a6c3f7a55d6d" class="numbered-list" start="1"><li>Age : 25 years</li></ol><ol type="1" id="bdeee888-cfdd-4dde-b7c3-d6116d29672d" class="numbered-list" start="2"><li>Occupation : Work / private employee</li></ol><ol type="1" id="10a0a2ed-746f-45b1-8d48-45d42ef934c6" class="numbered-list" start="3"><li>Situation/condition: working in a toxic company environment and under pressure</li></ol><p id="74ffbdff-9d85-40fc-a519-e71fedbe9284" class="">
+</p></li></ul><ul id="5475f132-4eb1-4e07-a7c4-73ea58c54c0f" class="bulleted-list"><li style="list-style-type:disc"><strong>Tools</strong><ol type="1" id="26adeebe-7d8b-4e31-9d50-c7fa2ae83a7e" class="numbered-list" start="1"><li>Maze<figure id="272b71a8-5650-490c-9b16-2d3ad0e15e39" class="image"><a href="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/Untitled.png"><img style="width:1440px" src="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/Untitled.png"/></a></figure><p id="5b9c2c3c-97d1-41b9-a883-4e4da5d8d94e" class="">In my usability testing activities, maze is useful to help me calculate quantitative data in usability testing results.</p></li></ol><ol type="1" id="8dbe5f1b-017a-4639-bc81-5f5d1b41a78a" class="numbered-list" start="2"><li>Zoom<figure id="e2176793-80e8-4596-b3f7-083b11b1d063" class="image"><a href="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/UT_yusuf_2.png"><img style="width:1440px" src="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/UT_yusuf_2.png"/></a></figure></li></ol><ol type="1" id="96d5038b-59f2-41b9-8947-eb1b0c754fb6" class="numbered-list" start="3"><li>Google Form<figure id="ef03b9a8-e035-4599-91f1-2459600ab6ad" class="image"><a href="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/image_3.png"><img style="width:528px" src="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/image_3.png"/></a></figure></li></ol></li></ul><h2 id="7014d0af-112b-4a74-ad24-ff88da53e576" class="">Scenario &amp; Task</h2><ul id="9b7a8df0-dc7e-42e9-b8af-15616fbba57f" class="bulleted-list"><li style="list-style-type:disc"><strong>Scenario 1</strong><p id="8791db15-7b41-4db0-b663-cb18688e27cd" class="">Now is a pretty busy day for you. You are now in an office with a high level of stress, overtime demands from your boss are quite solid, and you really need a work-life balance. You also make plans for counseling and make an appointment for counseling with a psychologist.</p><ol type="1" id="527c26a2-8cf6-4d9d-aecd-2128b1510c02" class="numbered-list" start="1"><li>Completing Log-In</li></ol><ol type="1" id="b94420b1-3e2a-440c-b578-9c77225ffb71" class="numbered-list" start="2"><li>Choose the type of counseling</li></ol><ol type="1" id="c36e9601-c181-4812-a6b7-5f6d947a2794" class="numbered-list" start="3"><li>Determine interaction media and counseling schedule</li></ol><ol type="1" id="0d2f23d3-4a16-43d1-91b9-cefaa7954575" class="numbered-list" start="4"><li>Choose payment</li></ol><ol type="1" id="03537a42-7aa8-49ad-b1bf-e2d729ef8d18" class="numbered-list" start="5"><li>View the counseling schedule</li></ol><p id="a2fbaf53-cd95-473f-80cd-dccfecf2cd01" class="">
+</p></li></ul><ul id="51e80173-fec9-4467-ba56-9400d12f7eeb" class="bulleted-list"><li style="list-style-type:disc"><strong>Scenario 2</strong><p id="fef49cb7-4bda-4720-9776-1d9b2cb282bc" class="">After you do counseling with a psychologist, you are asked to do journaling or record everything you want/dream that you want and want to do. This journaling becomes therapy for you, this journaling aims so that you have a target and the courage to limit yourself.</p><ol type="1" id="37bfaf84-ea5f-40f1-a7e6-bf4da71163e3" class="numbered-list" start="1"><li>Enter the journaling (dream book) menu</li></ol><ol type="1" id="8394093b-9326-4302-bdae-9a2c60a40782" class="numbered-list" start="2"><li>Let’s journaling</li></ol></li></ul><h2 id="819a0346-c92d-4354-8973-6051e4424d8a" class="">Usability Testing</h2><h3 id="be0ffeb8-fbab-476c-9637-4c98585b99d0" class="">Usability Metric</h3><ul id="4d50b84b-c6a1-4fea-800e-ffbbcb081ec4" class="bulleted-list"><li style="list-style-type:disc"><strong>Effectiveness </strong>(Easy for users to use features/products to complete tasks/scenarios)</li></ul><ul id="0e469045-b16e-44b6-a190-0d7b04786dd8" class="bulleted-list"><li style="list-style-type:disc"><strong>Efficiency </strong>(how long will it take to complete the task using the prototype)</li></ul><ul id="af4af431-550a-4d53-85a1-92595ec2c4cd" class="bulleted-list"><li style="list-style-type:disc"><strong>Satisfaction </strong>(participant subjectivity when using the product/feature)</li></ul><h3 id="26e0225a-a11f-4145-ab31-fbbb7986bce2" class="">System Usability Scale Question</h3><ol type="1" id="45d19f8f-1318-458a-8bb3-8269edccfc18" class="numbered-list" start="1"><li>I think I would like to use this tool frequently</li></ol><ol type="1" id="661b9754-85ac-4129-8482-8fcc8f5fe8d9" class="numbered-list" start="2"><li>I found the tool unnecessarily complex</li></ol><ol type="1" id="ca6cc22e-996e-4aba-bac9-1ca647ab027c" class="numbered-list" start="3"><li>I thought the tool was easy to use</li></ol><ol type="1" id="efd0062a-ace7-4ee1-a7a3-4c7462bbd22f" class="numbered-list" start="4"><li>I think that I would need the support of a technical person to be able to use this system</li></ol><ol type="1" id="415199e1-7220-4e38-a324-b7c795a53eb3" class="numbered-list" start="5"><li>I found the various functions in this tool were well integrated</li></ol><ol type="1" id="e5322297-77a4-4cd4-97f7-05e6af67f785" class="numbered-list" start="6"><li>I thought there was too much inconsistency in this tool</li></ol><ol type="1" id="cf0322bb-9b6c-4403-9ca9-fbce4c9c780d" class="numbered-list" start="7"><li>I would imagine that most people would learn to use this tool very quickly</li></ol><ol type="1" id="9b0a39e2-5724-47d9-ba29-44134c271ff5" class="numbered-list" start="8"><li>I found the tool very cumbersome to use</li></ol><ol type="1" id="8ed28978-ff5f-4fa9-812d-a7740306c64f" class="numbered-list" start="9"><li>I felt very confident using the tool</li></ol><ol type="1" id="34b77825-70ad-4843-a1df-d4768d7e31f9" class="numbered-list" start="10"><li>I needed to learn a lot of things before I could get going with this tool</li></ol><h3 id="2c62ef08-3016-4646-b5ef-db59d826f220" class="">Usability Report</h3><div id="6797641b-74e1-4de0-9339-6bc0434395f3" class="column-list"><div id="d8fe99a8-78bc-4421-984e-8ed303c4d7dc" style="width:56.25%" class="column"><ul id="d6186110-2b14-4752-bfaa-2f19a012bf54" class="bulleted-list"><li style="list-style-type:disc"><strong>Participant 1</strong><p id="3c64c2d5-44bf-42f0-831b-cb0f9ad93e4b" class="">Persona :<br/>Name: Muhammad Faizana<br/>Age: 25 years old<br/>Occupation: Private Employee<br/>Report Results:<br/></p><ul id="3955b1b7-a263-4e1e-9111-47c55a04caa6" class="bulleted-list"><li style="list-style-type:circle">Effectiveness → 7/7 tasks completed 100% or score 100</li></ul><ul id="0aa57566-6863-4c9b-b012-2b4aea3fd8fd" class="bulleted-list"><li style="list-style-type:circle">Efficiency → Average time: 11.21 seconds</li></ul><ul id="5eaf79f5-2e9d-48e5-a5e3-8e2b58fab80c" class="bulleted-list"><li style="list-style-type:circle">Satisfaction(SUS) → 70</li></ul></li></ul></div><div id="e98926a2-9a4d-493b-ae66-09a5dc31d074" style="width:43.75000000000001%" class="column"><p id="67e57fdf-d160-4676-8afd-87fe7710542c" class="">
+</p><figure id="0ef40045-d43a-43e7-9bf5-788c00807d2c" class="image"><a href="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/fei.png"><img style="width:528px" src="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/fei.png"/></a></figure></div></div><div id="509d0ec4-c205-4251-89ee-a28ed9703b4c" class="column-list"><div id="82e2d497-3e50-4aa0-ba3b-1654740c8dd2" style="width:56.25%" class="column"><ul id="08532eb4-5f07-4cd6-a118-cffdf16eaad6" class="bulleted-list"><li style="list-style-type:disc"><strong>Participant 2</strong><p id="d9101fb7-6e93-44c7-80f9-956782898da1" class="">Persona :<br/>Name: Muhammad Yusuf Syuhada<br/>Age: 25 years old<br/>Occupation: Private Employee<br/>Report Results:<br/></p><ul id="a96f1ca3-d18a-4a62-bfde-c837689e7418" class="bulleted-list"><li style="list-style-type:circle">Effectiveness → 6/7 tasks completed 85% or 85</li></ul><ul id="8f1b383c-150d-456a-8f55-8861b9c4db8f" class="bulleted-list"><li style="list-style-type:circle">Efficiency → Average time: 26.75 seconds</li></ul><ul id="31b45792-fd22-4059-aa54-43ab57243bf6" class="bulleted-list"><li style="list-style-type:circle">Satisfaction (SUS) → 72.5<p id="b85b8b22-af70-4388-80d5-ce90d523b9ad" class="">
+</p></li></ul></li></ul><ul id="1217c7c2-3ef2-4747-9b06-cc69daf788fb" class="bulleted-list"><li style="list-style-type:disc"><strong>Participant 3</strong><p id="48415235-4300-4d06-b552-03154a8b62e4" class="">Persona :<br/>Name: Ananda Almira<br/>Age: 25 years old<br/>Occupation: Private Employee<br/>Report Results:<br/></p><ul id="1782331b-1fe2-4bc0-bf17-cec0d32e4c0d" class="bulleted-list"><li style="list-style-type:circle">Effectiveness → 7/7 tasks completed 100% or score 100</li></ul><ul id="babbcefb-3bb7-481e-96b7-ee8d8cae36f4" class="bulleted-list"><li style="list-style-type:circle">Efficiency → Average time: 13.67 seconds</li></ul><ul id="2699ae73-fbe1-48ca-92d6-8ac7bf3196f7" class="bulleted-list"><li style="list-style-type:circle">Satisfaction (SUS) → 82.5</li></ul><p id="2cee62c5-4125-45c6-a3b1-a3c63d0c72b3" class="">
+</p></li></ul><ul id="07037636-8683-4e17-95fa-9151569cc28a" class="bulleted-list"><li style="list-style-type:disc"><strong>Participant 4</strong><p id="15c4d7d2-1291-4e63-939f-e3de5cc21f19" class="">Persona :<br/>Name: Witsqa Yustika<br/>Age: 25 years old<br/>Occupation: Private Employee<br/>Report Results:<br/></p><ul id="76afed7f-dd1d-49ee-adf0-7dd00382e799" class="bulleted-list"><li style="list-style-type:circle">Effectiveness → 7/7 tasks completed 100% or score 100</li></ul><ul id="acb72968-de45-49ae-a8d4-572d8bd2ef27" class="bulleted-list"><li style="list-style-type:circle">Efficiency → Average time: 17.64 seconds</li></ul><ul id="e77de841-9e44-4994-966a-eb5eb897936a" class="bulleted-list"><li style="list-style-type:circle">Satisfaction (SUS) → 85</li></ul><p id="6eda0601-5715-48f5-8e9e-a80e2a9c228d" class="">
+</p></li></ul><ul id="29043dc4-bc65-47a3-a6f5-8fbeacdd369d" class="bulleted-list"><li style="list-style-type:disc"><strong>Participant 5</strong><p id="7bbdf4dd-a623-4f87-9cd5-a78d5c918813" class="">Persona :<br/>Name: Aditya Muhammad Muldani<br/>Age: 25 years old<br/>Occupation: Private Employee<br/>Report Results:<br/></p><ul id="a3164758-114d-4931-a7d9-70e3d5f929cc" class="bulleted-list"><li style="list-style-type:circle">Effectiveness → 7/7 tasks completed 100% or score 100</li></ul><ul id="32a2bda7-6655-462f-90c5-bd6e17ebb065" class="bulleted-list"><li style="list-style-type:circle">Efficiency → Average time: 25.61 seconds</li></ul><ul id="e13a25c2-dd3d-458d-bf61-5e1b591acf04" class="bulleted-list"><li style="list-style-type:circle">Satisfaction (SUS) → 75</li></ul></li></ul></div><div id="2ea69d9f-8c3d-4dbe-8bca-dcb2d6ac8466" style="width:43.75%" class="column"><p id="c9f2c334-65b4-48f7-9d61-b89af1bde3c2" class="">
+</p><figure id="8c809c7f-da25-4d80-b497-8377ad08d6c5" class="image"><a href="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/yusuf.png"><img style="width:559px" src="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/yusuf.png"/></a></figure><p id="c7215fee-c9c4-402f-bc40-3fb9196d1e59" class="">
+</p><p id="cd4aa7e4-361f-46ef-a980-1fe5b4ba088e" class="">
+</p><p id="9a10bc5a-b5a0-4c23-9d61-2ec670942eee" class="">
+</p><p id="b765da50-04af-4095-b41d-9d32aa7ac1c1" class="">
+</p><figure id="b755c357-a7d3-4d1c-8dec-4ad306597fa8" class="image"><a href="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/nanda.png"><img style="width:373px" src="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/nanda.png"/></a></figure><p id="8e7eee6a-b055-45db-9850-5c75823c077a" class="">
+</p><p id="cba662a5-b399-4194-9885-2fcec5a68d1a" class="">
+</p><p id="d27ff98a-8ab9-41d5-9353-bbd72ebd1555" class="">
+</p><figure id="6852da1f-316d-44ed-9aac-8f6642f2a128" class="image"><a href="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/wistqa.png"><img style="width:374px" src="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/wistqa.png"/></a></figure><p id="d2a0f6a9-4582-4727-aee1-daa58ac9a9a0" class="">
+</p><p id="1f906f87-fd40-4df0-9642-0f081b4c10bc" class="">
+</p><p id="22cce0c7-3921-4045-8df7-47471faa6d3b" class="">
+</p><p id="4d9f3b2e-5197-4672-893c-3e0c818aa252" class="">
+</p><figure id="ba2ee5b2-d829-4074-9628-e486f183accc" class="image"><a href="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/adit.png"><img style="width:371px" src="Case%20Study%20Storia%205342c8eed4d04b10846f6769f270a2ba/adit.png"/></a></figure></div></div><h2 id="b7aa7a73-fec4-4a8a-a90d-71a3cb402db2" class="">Accumulation &amp; Conclusion</h2><p id="b77d8c36-9a2e-4e54-9e02-3ea1153eb26c" class="">It can be seen that the average result of:</p><ul id="ff2bd92e-e5bc-4804-92b6-9384d1825f2e" class="bulleted-list"><li style="list-style-type:disc"><strong>Effectiveness </strong>of 97% or a value of 97</li></ul><ul id="46cb9ca4-b85f-488f-8e96-86b9085163da" class="bulleted-list"><li style="list-style-type:disc"><strong>Efficiency </strong>average time is 16.97 seconds</li></ul><ul id="9ec939d9-59e6-49fe-88a1-d6a1752e3488" class="bulleted-list"><li style="list-style-type:disc"><strong>Satisfaction </strong>(SUS) Score of 77</li></ul><p id="cea3a68e-b924-41fe-86e3-ba6a131baf18" class="">With this, it can be concluded that the application of Storia in the implementation of Usability Testing (UT) is still above average and is in the &quot;Good&quot; category.</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>

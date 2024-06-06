@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch data example</title>
+</head>
+<body>
+    <h1>Data fetch exaple</h1>
+    <button id="fetchButton">Fetch Data</button>
+    <p id="dataDisplay">no data fetched yet</p>
+
+    <script>
+        function fetchData(callback){
+            setTimeout(()=>{
+                callback("data fetched");
+            }, 2000);
+        }
+
+        document.getElementById('fetchButton').addEventListener('click',()=>{
+            const afterFetchdata = (result) => {
+                console.log(`di dalam fetchdata ${result}`);
+                document.getElementById('dataDisplay').textContent = result;
+            };
+            fetchData(afterFetchdata);
+
+            /*fetchData((result) => {
+                console.log(`di dalam fetch ${result}`);
+                document.getElementById('dataDisplay').textContent = result;
+            });*/
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "binar-fsw-47",
+  "version": "1.0.0",
+  "description": "testing github for FSW gold chapter binar academy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  }
+}

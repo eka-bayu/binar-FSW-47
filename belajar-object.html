@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Belajar object with assign</h1>
+    <div id="objectOutput"></div>
+    <h1>Belajar object with construct</h1>
+    <div id="objectOutput2"></div>
+    <h1>Belajar object with constructor function</h1>
+    <div id="objectOutput3"></div>
+    <h1>Belajar object with constructor es6</h1>
+    <div id="objectOutput4"></div>
+</body>
+<script>
+    const object = {
+        name: "Ebay"
+    };
+
+    const outputDiv = document.getElementById('objectOutput');
+    outputDiv.innerHTML=`name: ${object.name}`;
+
+    const object2 = new Object();
+    object2.name = 'Gabay';
+
+    const outputDiv2 = document.getElementById('objectOutput2');
+    outputDiv2.innerHTML = `name: ${object2.name}`;
+
+    function profilKaryawan(nama, usia, jumlahTahunPengalaman){
+        (this.nama = nama), (this.usia = usia), (this.jumlahTahunPengalaman = jumlahTahunPengalaman);
+    }
+    const karyawan = new profilKaryawan('Eka Bayu', 27, 3);
+
+    const outputDiv3 = document.getElementById('objectOutput3');
+    outputDiv3.innerHTML = `nama: ${karyawan.nama}, usia: ${karyawan.usia}, pengalaman bekerja ${karyawan.jumlahTahunPengalaman} tahun`
+
+    class Pekerja {
+        constructor(namaAnda, usiaAnda, tahunpengalamanAnda){
+            this.nama = namaAnda; 
+            this.usia = usiaAnda; 
+            this.jumlahTahunPengalaman = tahunpengalamanAnda; 
+        }
+    }
+
+    const Pekerja2 = new Pekerja("Eka Bayu", 27, 3);
+
+    const outputDiv4 = document.getElementById('objectOutput4');
+    outputDiv4.innerHTML = `nama: ${Pekerja2.nama}, usia: ${Pekerja2.usia}, pengalaman bekerja: ${Pekerja2.jumlahTahunPengalaman} tahun`;
+</script>
+</html>
